@@ -39,6 +39,9 @@ public class Book {
   @Column(name = "book_publication_year")
   private short publicationYear;
 
+  @Column(name = "book_edition")
+  private short edition;
+
   @Column(name = "book_description")
   private String description;
 
