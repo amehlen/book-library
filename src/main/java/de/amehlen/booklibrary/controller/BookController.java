@@ -3,6 +3,7 @@ package de.amehlen.booklibrary.controller;
 import de.amehlen.booklibrary.model.Book;
 import de.amehlen.booklibrary.service.BookService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class BookController {
   }
 
   @PostMapping
-  public ResponseEntity<Book> addNewBook(@RequestBody Book book) {
+  public ResponseEntity<Book> addNewBook(@Valid @RequestBody Book book) {
     Book newBook = bookService.addNewBook(book);
     return new ResponseEntity<>(newBook, HttpStatus.CREATED);
   }

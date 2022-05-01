@@ -6,10 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @Builder(setterPrefix = "with")
@@ -24,27 +27,39 @@ public class Book {
   @Column(name = "book_id")
   private Long id;
 
-  @Column(name = "book_isbn")
+  @NotEmpty
+  @Length(min = 9, max = 13)
+  @Column(name = "book_isbn", length = 13, unique = true)
   private String isbn;
 
-  @Column(name = "book_title")
+  @NotEmpty
+  @Length(max = 150)
+  @Column(name = "book_title", length = 150)
   private String title;
 
-  @Column(name = "book_author")
+  @NotEmpty
+  @Length(max = 150)
+  @Column(name = "book_author", length = 150)
   private String author;
 
-  @Column(name = "book_publisher")
+  @NotEmpty
+  @Length(max = 150)
+  @Column(name = "book_publisher", length = 150)
   private String publisher;
 
   @Column(name = "book_publication_year")
   private short publicationYear;
 
+  @Min(1)
   @Column(name = "book_edition")
   private short edition;
 
-  @Column(name = "book_description")
+  @NotEmpty
+  @Length(max = 300)
+  @Column(name = "book_description", length = 300)
   private String description;
 
+  @Min(1)
   @Column(name = "book_pages")
   private Integer pages;
 }
