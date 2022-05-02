@@ -28,7 +28,7 @@ public class Book {
   private Long id;
 
   @NotEmpty
-  @Length(min = 9, max = 13)
+  @Length(min = 9, max = 13, message = "ISBN must be a valid ISBN-10 or ISBN-13")
   @Column(name = "book_isbn", length = 13, unique = true)
   private String isbn;
 
@@ -59,7 +59,7 @@ public class Book {
   @Column(name = "book_description", length = 300)
   private String description;
 
-  @Min(1)
+  @Min(0)
   @Column(name = "book_pages")
   private Integer pages;
 }
